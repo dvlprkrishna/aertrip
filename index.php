@@ -20,12 +20,13 @@
         <div class="table-wrapper">
           <div class="table-title">
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <h2>Simple HRM CRM</h2>
               </div>
-              <div class="col-sm-6">
-                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+              <div class="col-sm-9">
+                <a href="#addEmployeeModal" id="insert_employee_modal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                 <a href="#deleteAllModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Remove All Employee Data</span></a>
+                <a href="" class="btn btn-warning" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Update Existing Employee Data</span></a>
               </div>
             </div>
           </div>
@@ -33,6 +34,7 @@
             <caption>Created for Aertrip</caption>
             <thead>
               <tr>
+                <th>Emp ID</th>
                 <th>Name</th>
                 <th>Department</th>
                 <th>Contact</th>
@@ -64,7 +66,10 @@
               </div>
               <div class="form-group">
                 <label>Department</label>
-                <input type="text" name="department" class="form-control" required>
+                <select class="custom-select" name="department" id="dept-options">
+                    <option selected disabled>Select Department</option>
+                    <!-- Department names get populated here -->
+                </select>
               </div>
               <div class="form-group">
                 <label>Contact</label>
@@ -78,7 +83,7 @@
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-              <input type="button" class="btn btn-success" value="Add" onclick="addEmployee()">
+              <input type="button" class="btn btn-success" id="addEmployee" value="Add">
             </div>
           </form>
         </div>
@@ -94,28 +99,31 @@
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body" id="updateEmpBody">
-              <form name="updateBD">
+              <form name="updateEmpData">
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" name="author" class="form-control" required>
+                    <input type="text" name="name" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Department</label>
-                    <input type="text" name="title" class="form-control" required>
+                    <select class="custom-select" name="department" id="dept-options">
+                        <option selected disabled>Select Department</option>
+                        <!-- Department names get populated here -->
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Contact</label>
-                    <input type="text" name="title" class="form-control" required>
+                    <input type="text" name="contact" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label>Address</label>
-                    <textarea class="form-control" name="content" required></textarea>
+                    <textarea class="form-control" name="address" required></textarea>
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-              <input type="submit" class="btn btn-success" value="Update" onclick="updateBlogData()">
+              <input type="submit" class="btn btn-success" id="" value="Update" onclick="updateBlogData()">
             </div>
           </form>
         </div>

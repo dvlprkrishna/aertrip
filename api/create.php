@@ -9,31 +9,28 @@
   $response = array();
 
   $response['success'] = false;
-  $response['msg'] = 'Cannot Add New Employee, Connection Error';
+  $response['msg'] = 'Cannot Add New Employee';
 
-  $query1 = "INSERT INTO `at_employees` (`name`,`is_Active`)
-                VALUES(:name,'1')";
+  $query1 = "INSERT INTO `at_employees` (`name`,`department_id`,`is_Active`)
+                VALUES(:name,:department,'1')";
   $sql_1 = $conn->prepare($query1);
   $sql_1->bindParam(':name', $at_name);
+  $sql_1->bindParam(':department', $at_department);
   $sql_1->execute();
   $sql_lastentry = $conn->lastInsertId();
 
-        $query2 = "INSERT INTO `at_employees_contact` (`employee_id`,`department_id`,`contact`,`is_Active`)
-                VALUES(:lastentry,:department,:contact,'1')";
+        $query2 = "INSERT INTO `at_employees_contact` (`employee_id`,`contact`,`is_Active`)
+                VALUES(:lastentry,:contact,'1')";
         $sql_2 = $conn->prepare($query2);
         $sql_2->bindParam(':lastentry', $sql_lastentry);
         $sql_2->bindParam(':contact', $at_contact);
-        // $sql_2->bindParam(':address', $at_address);
-        $sql_2->bindParam(':department', $at_department);
         $sql_2->execute();
 
-        $query3 = "INSERT INTO `at_employees_address` (`employee_id`,`department_id`,`address`,`is_Active`)
-                VALUES(:lastentry,:department,:address,'1')";
+        $query3 = "INSERT INTO `at_employees_address` (`employee_id`,`address`,`is_Active`)
+                VALUES(:lastentry,:address,'1')";
         $sql_3 = $conn->prepare($query3);
         $sql_3->bindParam(':lastentry', $sql_lastentry);
-        // $sql_3->bindParam(':contact', $at_contact);
         $sql_3->bindParam(':address', $at_address);
-        $sql_3->bindParam(':department', $at_department);
         $sql_3->execute();
 
             $response['success'] = true;
