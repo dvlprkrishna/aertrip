@@ -26,8 +26,8 @@
               <div class="col-sm-10">
                 <a href="#addEmployeeModal" id="insert_employee_modal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Employee</span></a>
                 <a href="#deleteAllModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Remove All Data</span></a>
-                <a href="#updateEmployeeModal" id="update_employee_modal" class="btn btn-warning" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Update Employee Data</span></a>
-                <a href="#addDeptModal" id="update_employee_modal" class="btn btn-warning" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Add Department</span></a>
+                <a href="#updateEmployeeModal" id="update_employee_modal" class="btn btn-info" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Update Employee Data</span></a>
+                <a href="#addDeptModal" id="update_employee_modal" class="btn btn-info" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Add Department</span></a>
 
               </div>
             </div>
@@ -43,7 +43,7 @@
                 </form>
               </div>
               <div class="col-sm-2">
-                <button id="empsearchbtn" class="btn btn-warning"><i class="material-icons">✅</i> Find</span></button>
+                <button id="empsearchbtn" class="btn btn-block btn-info"><i class="material-icons">✅</i> Find</span></button>
               </div>
             </div>
           </div>
