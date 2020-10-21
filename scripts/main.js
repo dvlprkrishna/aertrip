@@ -18,12 +18,12 @@ window.addEventListener('load', function () {
                          <td>${parsedData.data[key].department_name}</td>
                          <td>${parsedData.data[key].contact}</td>
                          <td>${parsedData.data[key].address}</td>
-                         <td id="${parsedData.data[key].id}">
-                            <a onclick="updateEmployee(${parsedData.data[key].id})" type="button"  class="edit"
+                         <td id="${parsedData.data[key].id} ">
+                            <a id="" onclick="updateEmployee(${parsedData.data[key].id})" type="button"  class="editEmpBtn edit"
                                 data-id="${parsedData.data[key].id}" data-dept="${parsedData.data[key].department_name}">
                                 <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                             </a>
-                            <a onclick="" type="button" class="deleteInv"   data-toggle="modal">
+                            <a type="button" class="deleteInv"   data-toggle="modal">
                                 <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                             </a>
                         </td>
@@ -83,8 +83,16 @@ window.addEventListener('load', function () {
     }
 
     function updateEmployee(id) {
-        console.log(id);
+        console.log('clicked ' + id)
     }
+
+
+
+
+
+
+
+
 
     // Calling Functions on clicks
     $('#addEmployee').on('click', function () {
