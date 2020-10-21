@@ -20,13 +20,15 @@
         <div class="table-wrapper">
           <div class="table-title">
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-2">
                 <h2>Aertrip HRM</h2>
               </div>
-              <div class="col-sm-9">
-                <a href="#addEmployeeModal" id="insert_employee_modal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
-                <a href="#deleteAllModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Remove All Employee Data</span></a>
-                <a href="#updateEmployeeModal" id="update_employee_modal" class="btn btn-warning" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Add Addtional Employee Data</span></a>
+              <div class="col-sm-10">
+                <a href="#addEmployeeModal" id="insert_employee_modal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add Employee</span></a>
+                <a href="#deleteAllModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Remove All Data</span></a>
+                <a href="#updateEmployeeModal" id="update_employee_modal" class="btn btn-warning" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Update Employee Data</span></a>
+                <a href="#addDeptModal" id="update_employee_modal" class="btn btn-warning" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Add Department</span></a>
+
               </div>
             </div>
             <div class="row mt-2">
@@ -226,6 +228,31 @@
       </div>
     </div>
 
+
+<!-- Add Department Modal HTML -->
+    <div id="addDeptModal" class="modal fade">
+      <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+          <form name="addDept">
+            <div class="modal-header">
+              <h4 class="modal-title">Add New Deparment</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body" id="addDeptBody">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" name="department_name" class="form-control" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+              <input type="button" class="btn btn-success" id="addDeptBtn" value="Add">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -427,7 +454,32 @@
         });
     });
 
+// Add Dept
 
+  $('#addDeptBtn').on('click', function () {
+      var deptName = $('[name="addDept"]').serialize();
+        $.ajax({
+            url: 'api/create_dept.php?' + deptName,
+            type: 'POST',
+            success: function (data) {
+                if(JSON.parse(data).success){
+                    $('#addDeptBody').html('');
+                    $('#addDeptBody').html('<p>Data Added Successfully</p>');
+                    $('[value="Add"]').css('display', 'none');
+                    $('[value="Cancel"]').css('display', 'none');
+                } else {
+                    $('#addDeptBody').html('');
+                    $('#addDeptBody').html('<p>Employee name and department already exist</p>');
+                    $('[value="Add"]').css('display', 'none');
+                    $('[value="Cancel"]').css('display', 'none');
+                }
+
+            },
+            error: function (err) {
+                alert('error');
+            }
+        });
+    });
 
 
 
