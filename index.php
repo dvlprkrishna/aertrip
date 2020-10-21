@@ -21,12 +21,27 @@
           <div class="table-title">
             <div class="row">
               <div class="col-sm-3">
-                <h2>Simple HRM CRM</h2>
+                <h2>Aertrip HRM</h2>
               </div>
               <div class="col-sm-9">
                 <a href="#addEmployeeModal" id="insert_employee_modal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
                 <a href="#deleteAllModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Remove All Employee Data</span></a>
                 <a href="#updateEmployeeModal" id="update_employee_modal" class="btn btn-warning" data-toggle="modal"><i class="material-icons">&#xE15C;</i>Add Addtional Employee Data</span></a>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-sm-5">
+                <h2 class="text-left"><small>Search Employee</small></h2>
+              </div>
+              <div class="col-sm-5">
+                <form name="empsearch">
+                  <div class="form-group">
+                    <input type="search" name="search" class="  form-control" placeholder="Enter Employee Name" required>
+                  </div>
+                </form>
+              </div>
+              <div class="col-sm-2">
+                <button id="empsearchbtn" class="btn btn-warning"><i class="material-icons">✅</i> Find</span></button>
               </div>
             </div>
           </div>
@@ -330,6 +345,7 @@
           }
       });
     });
+    // Update Emp
     function updateEmployee() {
         $.ajax({
             url: 'api/read_employee_only.php',
@@ -378,6 +394,38 @@
     }
 
 
+    // Search EMP
+    $('#empsearchbtn').on('click', function () {
+      var queryQ = $('[name="empsearch"]').serialize();
+        $.ajax({
+            url: 'api/search.php?' + queryQ,
+            type: 'POST',
+            success: function (data) {
+                // console.log(data)
+                var parsedDataS = JSON.parse(data);
+                $('#dataWrapper').html('');
+                var searchhtmlbuilder = ``;
+                for (const key in parsedDataS.data) {
+                    if (parsedDataS.data.hasOwnProperty(key)) {
+
+                        searchhtmlbuilder += `<tr>
+                            <td>${parsedDataS.data[key].id}</td>
+                            <td>${parsedDataS.data[key].name}</td>
+                            <td>${parsedDataS.data[key].department_name}</td>
+                            <td>${parsedDataS.data[key].contact}</td>
+                            <td>${parsedDataS.data[key].address}</td>
+                          </tr>`;
+                    }
+                }
+                $('#dataWrapper').html(searchhtmlbuilder);
+
+
+            },
+            error: function (err) {
+                alert('error');
+            }
+        });
+    });
 
 
 
